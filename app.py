@@ -17,6 +17,7 @@ class app(base_app):
     title = "Knot detection based on angular analysis of z-motion"
     xlink_article = 'http://www.ipol.im/'
     xlink_src = 'http://www.ipol.im/pub/pre/67/gjknd_1.1.tgz'
+    dgtal_src = 'https://github.com/kerautret/DGtal.git'
     demo_src_filename  = 'gjknd_1.1.tgz'
 
 
@@ -73,10 +74,13 @@ class app(base_app):
             # extract the archive
             build.extract(tgz_file, self.src_dir)
             # build the program
-            build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
+            build.run("clone %s" %(https://github.com/kerautret/DGtal.git))
+            build.run("cd %s ; mkdir build; cmake .. -DCMAKE_BUILD_TYPE=Release; make -j 4" %(self.src_dir + "DGtal"))
+            
+            #build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
             						 stdout=log_file)
-            build.run("cd %s; cmake .. ; make -j 4" %(self.src_dir + \
-            							"gjknd_1.1/build"),stdout=log_file)
+           # build.run("cd %s; cmake .. ; make -j 4" %(self.src_dir + \
+            #							"gjknd_1.1/build"),stdout=log_file)
 
             # save into bin dir
             if os.path.isdir(self.bin_dir):
