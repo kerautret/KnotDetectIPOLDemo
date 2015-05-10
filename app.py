@@ -74,7 +74,7 @@ class app(base_app):
             # extract the archive
             build.extract(tgz_file, self.src_dir)
             # build the program
-            build.run("clone %s" %(https://github.com/kerautret/DGtal.git))
+            build.run("clone %s" %("https://github.com/kerautret/DGtal.git"))
             build.run("cd %s ; mkdir build; cmake .. -DCMAKE_BUILD_TYPE=Release; make -j 4" %(self.src_dir + "DGtal"))
             
             #build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
