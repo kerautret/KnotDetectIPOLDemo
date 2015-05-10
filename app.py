@@ -78,7 +78,7 @@ class app(base_app):
             build.run("cd %s ; mkdir build; cmake .. -DCMAKE_BUILD_TYPE=Release; make -j 4" %(self.src_dir + "DGtal"))
             
             #build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
-            						 stdout=log_file)
+           #            						 stdout=log_file)
            # build.run("cd %s; cmake .. ; make -j 4" %(self.src_dir + \
             #							"gjknd_1.1/build"),stdout=log_file)
 
