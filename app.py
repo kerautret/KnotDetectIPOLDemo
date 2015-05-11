@@ -52,46 +52,46 @@ class app(base_app):
         program build/update
         """
         # store common file path in variables
-        tgz_file = self.dl_dir + self.demo_src_filename
-        prog_names = ["dll_decomposition", "dll_sequence", "testBoundaries", \
-        			  "testDecomposition", "testOtsu"]
-        prog_bin_files = []
+        # tgz_file = self.dl_dir + self.demo_src_filename
+        # prog_names = ["dll_decomposition", "dll_sequence", "testBoundaries", \
+        # 			  "testDecomposition", "testOtsu"]
+        # prog_bin_files = []
 
-        for f in prog_names:
-            prog_bin_files.append(self.bin_dir+ f)
+        # for f in prog_names:
+        #     prog_bin_files.append(self.bin_dir+ f)
 
-        log_file = self.base_dir + "build.log"
-        # get the latest source archive
-        print ("Starting download \n")
-        build.download(self.xlink_src, tgz_file)
-        print ("download ended... \n")
-        # test if the dest file is missing, or too old
-        if (os.path.isfile(prog_bin_files[0])
-            and ctime(tgz_file) < ctime(prog_bin_files[0])):
-            cherrypy.log("not rebuild needed",
-                         context='BUILD', traceback=False)
-        else:
-            # extract the archive
-            build.extract(tgz_file, self.src_dir)
-            # build the program
-            build.run("cd %s; git clone %s" %(self.src_dir) %("https://github.com/kerautret/DGtal.git"))
-            build.run("cd %s ; mkdir build; cmake .. -DCMAKE_BUILD_TYPE=Release; make -j 4" %(self.src_dir + "DGtal"))
+        # log_file = self.base_dir + "build.log"
+        # # get the latest source archive
+        # print ("Starting download \n")
+        # build.download(self.xlink_src, tgz_file)
+        # print ("download ended... \n")
+        # # test if the dest file is missing, or too old
+        # if (os.path.isfile(prog_bin_files[0])
+        #     and ctime(tgz_file) < ctime(prog_bin_files[0])):
+        #     cherrypy.log("not rebuild needed",
+        #                  context='BUILD', traceback=False)
+        # else:
+        #     # extract the archive
+        #     build.extract(tgz_file, self.src_dir)
+        #     # build the program
+        #     build.run("cd %s; git clone %s" %(self.src_dir) %("https://github.com/kerautret/DGtal.git"))
+        #     build.run("cd %s ; mkdir build; cmake .. -DCMAKE_BUILD_TYPE=Release; make -j 4" %(self.src_dir + "DGtal"))
             
-            #build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
-           #            						 stdout=log_file)
-           # build.run("cd %s; cmake .. ; make -j 4" %(self.src_dir + \
-            #							"gjknd_1.1/build"),stdout=log_file)
+        #     #build.run("mkdir %s;  " %(self.src_dir+"gjknd_1.1/build"), \
+        #    #            						 stdout=log_file)
+        #    # build.run("cd %s; cmake .. ; make -j 4" %(self.src_dir + \
+        #     #							"gjknd_1.1/build"),stdout=log_file)
 
-            # save into bin dir
-            if os.path.isdir(self.bin_dir):
-                shutil.rmtree(self.bin_dir)
-            os.mkdir(self.bin_dir)
-            for i in range(0, len(prog_bin_files)) :
-                shutil.copy(self.src_dir + os.path.join("gjknd_1.1/build/src", \
-                			prog_names[i]), prog_bin_files[i])
+        #     # save into bin dir
+        #     if os.path.isdir(self.bin_dir):
+        #         shutil.rmtree(self.bin_dir)
+        #     os.mkdir(self.bin_dir)
+        #     for i in range(0, len(prog_bin_files)) :
+        #         shutil.copy(self.src_dir + os.path.join("gjknd_1.1/build/src", \
+        #         			prog_names[i]), prog_bin_files[i])
 
-            # cleanup the source dir
-            shutil.rmtree(self.src_dir)
+        #     # cleanup the source dir
+        #     shutil.rmtree(self.src_dir)
 
         return
 
