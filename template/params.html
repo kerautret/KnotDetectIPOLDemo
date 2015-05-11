@@ -2,10 +2,35 @@
 
 <p>
 
-We provide an implementation for three models: <font color="blue"> <i>StraightLine</i> </font>, <font color="blue"><i>Circle</i></font>, <font color="blue"><i>Conic</i></font>.
-You can specify which model is used for the decomposition.
+You can change different parameter of the knot detection algorithm:
+
+<font color="blue"> <i>alpha resolution</i> </font>, 
+<font color="blue"><i>Radius Min</i></font>,
+<font color="blue"><i>Radius Max</i></font>.
+
+
 
 </p>
+
+  <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="minthreshold">Alpha resolution <font color="blue"><i>alpha resolution</i></font>:</label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="minthreshold" name="minthreshold" value="0" />
+  </div>
+  <div id="minthreshold_slider" name="minthreshold_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#minthreshold', '#minthreshold_slider', 100, 900, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+
+  
+
+
 
 <p><form action="${app.base_url + 'wait'}" method="get">
   <div class="action">
