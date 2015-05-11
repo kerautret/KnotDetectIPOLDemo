@@ -37,15 +37,15 @@ You can change different parameter of the knot detection algorithm:
 <li>
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minthreshold">Radius Max<font color="blue"><i>RMax</i></font>:</label>
+    <label for="minthreshold">Radius Max: <font color="blue"><i>RMax</i></font>:</label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="minthreshold" name="minthreshold" value="20" />
   </div>
-  <div id="minthreshold_slider" name="minthreshold_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <div id="rmin_slider" name="rmin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#minthreshold', '#minthreshold_slider', 0, 400, 1);
+    createLinkedSlider('#minthreshold', '#rmin_slider, 0, 400, 1);
     });
   </script>
   <div style="clear:both"> </div>
