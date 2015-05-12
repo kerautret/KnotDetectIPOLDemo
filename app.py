@@ -24,10 +24,10 @@ class app(base_app):
 
 
     input_nb = 1 # number of input images
-    input_max_pixels = 500000 # max size (in pixels) of an input image
-    input_max_weight = 1 * 1024 * 1024 # max size (in bytes) of an input file
+    input_max_pixels = 4096 * 4096 # max size (in pixels) of an input image
+    input_max_weight = 1 * 4096 * 4096 # max size (in bytes) of an input file
     input_dtype = '3x8i' # input image expected data type
-    input_ext = '.png'   # input image expected extension (ie file format)
+    input_ext = '.vol'   # input image expected extension (ie file format)
     is_test = False       # switch to False for deployment
     commands = []
 
@@ -111,6 +111,7 @@ class app(base_app):
         process the non-standard input
         '''         
         extension3D = (fnames[0])[-6:-4]
+        self.cfg['meta']['is3d'] = extension3D == "3d"
         baseName = (fnames[0])[0:-4]
         shutil.copy(self.input_dir +baseName+".vol",
                     self.work_dir + 'inputVol_0.vol')        
@@ -179,7 +180,7 @@ class app(base_app):
         print self.cfg['param']
                  
         # run the algorithm
-        self.list_commands = ""
+        self.commands = ""
 
         try:
             self.run_algo(self)
