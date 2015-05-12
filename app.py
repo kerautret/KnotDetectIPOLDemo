@@ -213,13 +213,12 @@ class app(base_app):
         alpha_res = self.cfg['param']['a']
         rmin = self.cfg['param']['rmin']
         rmax = self.cfg['param']['rmax']
-        source  =  self.cfg['param']['namesrc']
-        
+               
         # run the algorithm
         self.list_commands = ""
 
         try:
-            self.run_algo(alpha_res, rmin, rmax, source)
+            self.run_algo(alpha_res, rmin, rmax)
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
@@ -250,7 +249,7 @@ class app(base_app):
 
 
 
-    def run_algo(self, a, rmin, rmax, source):
+    def run_algo(self, a, rmin, rmax):
         """
         the core algo runner
         could also be called by a batch processor
