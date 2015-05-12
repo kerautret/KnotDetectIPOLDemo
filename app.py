@@ -128,8 +128,10 @@ class app(base_app):
         # if a new experiment on the same image, clone data
         if newrun:
              oldPath = self.work_dir + 'inputVol_0.vol'
+             oldPathSDP = self.work_dir + 'inputVol_0.sdp'
              self.clone_input()
              shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
+             shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
 
         # save the input image as 'input_0_selection.png', the one to be used
         img = image(self.work_dir + 'input_0.png')
