@@ -143,7 +143,9 @@ class app(base_app):
         self.cfg.save()
 
 
+
     @cherrypy.expose
+    @init_app
     def clone_input(self):
         """
         clone the input for a re-run of the algo
