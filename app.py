@@ -29,8 +29,7 @@ class app(base_app):
     input_dtype = '3x8i' # input image expected data type
     input_ext = '.png'   # input image expected extension (ie file format)
     is_test = False       # switch to False for deployment
-    list_commands = ""
-
+    commands = []
 
     def __init__(self):
         """
@@ -40,16 +39,18 @@ class app(base_app):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         base_app.__init__(self, base_dir)
 
-
         # select the base_app steps to expose
-        # index() and input_xxx() are generic
-        base_app.index.im_func.exposed = True
-        base_app.input_select.im_func.exposed = True
-        base_app.input_upload.im_func.exposed = True
+        # index() is generic
+        app_expose(base_app.index)
+        app_expose(base_app.input_select)
+        app_expose(base_app.input_upload)
         # params() is modified from the template
-        base_app.params.im_func.exposed = True
-        # result() is modified from the template
-        base_app.result.im_func.exposed = True
+        app_expose(base_app.params)
+        # run() and result() must be defined here
+
+
+
+
     
 
 
