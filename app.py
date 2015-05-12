@@ -189,7 +189,7 @@ class app(base_app):
         this one needs no parameter
         """
         f = open(self.work_dir+"output.txt", "w")
-        command_args = ['test.sh','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', 'resp.pgm', '--skipFirstSlice', "30"  ]
+        command_args = ['singleKnotsDetection','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', 'resp.pgm', '--skipFirstSlice', "30"  ]
 
         self.runCommand(command_args, f )
         f.close()
