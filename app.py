@@ -196,7 +196,6 @@ class app(base_app):
         #f = open(self.work_dir+"commands.txt", "w")
         #f.write(self.list_commands)
         #f.close()
-
         return
 
     @cherrypy.expose
