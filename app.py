@@ -112,6 +112,7 @@ class app(base_app):
         '''         
         extension3D = (fnames[0])[-6:-4]
         baseName = (fnames[0])[0:-4]
+        self.cfg['meta']['basename'] = baseName
         shutil.copy(self.input_dir +baseName+".vol",
                     self.work_dir + 'inputVol_0.vol')        
         shutil.copy(self.input_dir +baseName+".sdp",
@@ -178,6 +179,11 @@ class app(base_app):
 
         # read the parameters
         print self.cfg['param']
+
+        shutil.copy(self.input_dir +self.cfg['meta']['basename']+".vol",
+                    self.work_dir + 'inputVol_0.vol')        
+        shutil.copy(self.input_dir +self.cfg['meta']['basename']+".sdp",
+                    self.work_dir + 'inputVol_0.sdp')        
                  
         # run the algorithm
         self.commands = ""
@@ -225,7 +231,7 @@ class app(base_app):
         rmax = self.cfg['param']['rmax']
         
         f = open(self.work_dir+"output.txt", "w")
-        command_args = ['apply.sh','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
+        command_args = ['apply.sh','-i', self.intowork_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
 
         p = self.run_proc(command_args, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
