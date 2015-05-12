@@ -61,15 +61,12 @@ class app(base_app):
         configure the algo execution
         """
 
-        if newrun:
-            # if a new experiment on the same image, clone data
-            oldPath = self.work_dir + 'inputVol_0.vol'
-            oldPathSDP = self.work_dir + 'inputVol_0.sdp'
-
-            self.clone_input()
-
-            shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
-            shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
+        # if a new experiment on the same image, clone data
+        oldPath = self.work_dir + 'inputVol_0.vol'
+        oldPathSDP = self.work_dir + 'inputVol_0.sdp'
+        self.clone_input()
+        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
+        shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
 
 
 
