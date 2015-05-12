@@ -3,7 +3,7 @@ Knot detection based on angular analysis of z-motion
 demo editor: Bertrand Kerautret
 """
 
-from lib import base_app, build, http, image
+from lib import base_app, build, http, image, config
 from lib.misc import app_expose, ctime
 from lib.base_app import init_app
 import cherrypy
