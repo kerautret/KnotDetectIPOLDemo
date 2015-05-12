@@ -219,9 +219,9 @@ class app(base_app):
         				  env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
         # transform convert.sh in it classic prog command (equivalent)
-        command_to_save = ' '.join(['"' + arg + '"' if ' ' in arg else arg
-                 for arg in command ])
-        if comp is not None:
-            command_to_save += comp
-        self.list_commands +=  command_to_save + '\n'
-        return command_to_save
+       # command_to_save = ' '.join(['"' + arg + '"' if ' ' in arg else arg
+       #          for arg in command ])
+       # if comp is not None:
+       #     command_to_save += comp
+       # self.list_commands +=  command_to_save + '\n'
+       # return command_to_save
