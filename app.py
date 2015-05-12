@@ -139,7 +139,7 @@ class app(base_app):
                     self.work_dir + 'inputVol_0.sdp')        
         shutil.copy(self.input_dir +baseName+".sdp",
                     self.work_dir + 'titi.sdp')        
-        self.cfg['meta']['original'] = False 
+        self.cfg['param']['namesrc'] = baseName 
         self.cfg.save()
 
 
@@ -180,12 +180,13 @@ class app(base_app):
         alpha_res = self.cfg['param']['a']
         rmin = self.cfg['param']['rmin']
         rmax = self.cfg['param']['rmax']
-
+        source  =  self.cfg['param']['namesrc']
+        
         # run the algorithm
         self.list_commands = ""
 
         try:
-            self.run_algo(alpha_res, rmin, rmax)
+            self.run_algo(alpha_res, rmin, rmax, source)
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
@@ -216,14 +217,15 @@ class app(base_app):
 
 
 
-    def run_algo(self, a, rmin, rmax):
+    def run_algo(self, a, rmin, rmax, source):
         """
         the core algo runner
         could also be called by a batch processor
         this one needs no parameter
         """
+
         f = open(self.work_dir+"output.txt", "w")
-        command_args = ['singleKnotsDetection','-i', 'inputVol_0.vol', '-c', 'inputVol_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
+        command_args = ['apply.sh','-i', self.input_dir +source+".vol", '-c', self.input_dir +source+".sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
 
         p = self.run_proc(command_args, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
