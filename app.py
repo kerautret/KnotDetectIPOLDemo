@@ -21,16 +21,16 @@ class app(base_app):
     xlink_src = 'http://www.ipol.im/pub/pre/67/gjknd_1.1.tgz'
     dgtal_src = 'https://github.com/kerautret/DGtal.git'
     demo_src_filename  = 'gjknd_1.1.tgz'
+    demo_src_dir = 'SingleKnotsDetection'
 
 
     input_nb = 1 # number of input images
     input_max_pixels = 4096 * 4096 # max size (in pixels) of an input image
     input_max_weight = 1 * 4096 * 4096 # max size (in bytes) of an input file
     input_dtype = '3x8i' # input image expected data type
-    input_ext = '.vol'   # input image expected extension (ie file format)
+    input_ext = '.png'   # input image expected extension (ie file format)
     is_test = False       # switch to False for deployment
     commands = []
-
     def __init__(self):
         """
         app setup
@@ -189,7 +189,8 @@ class app(base_app):
         self.commands = ""
 
         try:
-            self.run_algo(self)
+            self.run_algo({'minthreshold': 0,
+                           'maxthreshold': 10})
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
