@@ -36,10 +36,9 @@ You can change different parameter of the knot detection algorithm:
 </li>
 
 <li>
-
  <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minr">Alpha resolution: <font color="blue"><i> Min Radius </i></font>:</label>
+    <label for="minr">Min radius: <font color="blue"><i> minR </i></font>:</label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="minr" name="minr" value="40" />
   </div>
@@ -52,6 +51,27 @@ You can change different parameter of the knot detection algorithm:
   </script>
   <div style="clear:both"> </div>
   <!-- end of code for slider -->
+
+</li>
+
+<li>
+ <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="minr">Max radius: <font color="blue"><i> maxR </i></font>:</label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="maxr" name="maxr" value="40" />
+  </div>
+  <div id="max_slider" name="max_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#maxr', '#maxr_slider', 10, 150, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+</li>
+
 </ul>
 
   
