@@ -192,7 +192,9 @@ class app(base_app):
         command_args = ['apply.sh','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', 'resp.pgm', '--skipFirstSlice', "30"  ]
 
         self.run_proc(command_args, env={'LD_LIBRARY_PATH' : self.bin_dir})
-        #self.runCommand(command_args, f )
+        self.wait_proc(p, timeout=self.timeout)
+        
+#self.runCommand(command_args, f )
         f.close()
         #f = open(self.work_dir+"commands.txt", "w")
         #f.write(self.list_commands)
