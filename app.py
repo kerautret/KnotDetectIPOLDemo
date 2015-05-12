@@ -242,9 +242,9 @@ class app(base_app):
         alpha_res = self.cfg['param']['a']
         rmin = self.cfg['param']['rmin']
         rmax = self.cfg['param']['rmax']
-     
+        
         f = open(self.work_dir+"output.txt", "w")
-        command_args = ['apply.sh','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
+        command_args = ['apply.sh','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
 
         p = self.run_proc(command_args, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
