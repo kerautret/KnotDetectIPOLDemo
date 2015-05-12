@@ -121,12 +121,11 @@ class app(base_app):
     def params(self, newrun=False, msg=None):
         """Parameter handling (optional crop)."""
 
-        # if a new experiment on the same image, clone data
-        oldPath = self.work_dir + 'inputVol_0.vol'
-        oldPathSDP = self.work_dir + 'inputVol_0.sdp'
-        self.clone_input()
-        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
-        shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
+        shutil.copy(self.input_dir +baseName+".vol",
+                    self.work_dir + 'inputVol_0.vol')        
+        shutil.copy(self.input_dir +baseName+".sdp",
+                    self.work_dir + 'inputVol_0.sdp')        
+
         self.cfg.save()
         return self.tmpl_out('params.html')
 
