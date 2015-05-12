@@ -38,14 +38,16 @@ class app(base_app):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         base_app.__init__(self, base_dir)
 
+
         # select the base_app steps to expose
-        # index() is generic
-        app_expose(base_app.index)
-        app_expose(base_app.input_select)
-        app_expose(base_app.input_upload)
+        # index() and input_xxx() are generic
+        base_app.index.im_func.exposed = True
+        base_app.input_select.im_func.exposed = True
+        base_app.input_upload.im_func.exposed = True
         # params() is modified from the template
-        app_expose(base_app.params)
-        # run() and result() must be defined here
+        base_app.params.im_func.exposed = True
+        # result() is modified from the template
+        base_app.result.im_func.exposed = True
     
 
 
@@ -61,12 +63,15 @@ class app(base_app):
         configure the algo execution
         """
 
-        # if a new experiment on the same image, clone data
-        oldPath = self.work_dir + 'inputVol_0.vol'
-        oldPathSDP = self.work_dir + 'inputVol_0.sdp'
-        self.clone_input()
-        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
-        shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
+        if newrun:
+            # if a new experiment on the same image, clone data
+            oldPath = self.work_dir + 'inputVol_0.vol'
+            oldPathSDP = self.work_dir + 'inputVol_0.sdp'
+
+            self.clone_input()
+
+            shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
+            shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
 
 
 
