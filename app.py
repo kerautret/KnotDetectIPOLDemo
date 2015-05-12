@@ -125,7 +125,7 @@ class app(base_app):
         oldPath = self.work_dir + 'inputVol_0.vol'
         oldPathSDP = self.work_dir + 'inputVol_0.sdp'
         self.clone_input()
-        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol)'
+        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
         shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
         self.cfg.save()
         return self.tmpl_out('params.html')
