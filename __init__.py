@@ -1,5 +1,5 @@
 """
-Demo of Digital Level Layers for Digital Curve Decomposition and Vectorization
+Knot detection based on angular analysis of z-motion
 """
 
 from .app import app
