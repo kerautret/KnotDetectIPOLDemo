@@ -108,7 +108,7 @@ class app(base_app):
                     self.work_dir + 'inputVol_0.vol')        
         shutil.copy(self.input_dir +baseName+".sdp",
                     self.work_dir + 'inputVol_0.sdp')        
-        self.cfg['meta']['original'] = false 
+        self.cfg['meta']['original'] = False 
         self.cfg.save()
 
 
