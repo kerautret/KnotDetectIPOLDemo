@@ -21,15 +21,15 @@ interval (<font color="blue"><i>rMin</i></font>,
 <li>
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minthreshold">Alpha resolution: <font color="blue"><i>a</i></font></label>
+    <label for="a">Alpha resolution: <font color="blue"><i>a</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="minthreshold" name="minthreshold" value="500" />
+           size="4" id="a" name="a" value="500" />
   </div>
-  <div id="minthreshold_slider" name="minthreshold_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <div id="a_slider" name="a_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#minthreshold', '#minthreshold_slider', 100, 900, 1);
+    createLinkedSlider('#a', '#a_slider', 100, 900, 1);
     });
   </script>
   <div style="clear:both"> </div>
