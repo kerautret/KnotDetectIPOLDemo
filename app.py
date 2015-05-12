@@ -191,8 +191,7 @@ class app(base_app):
         f = open(self.work_dir+"output.txt", "w")
         command_args = ['apply.sh','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', 'resp.pgm', '--skipFirstSlice', "30"  ]
 
-         self.run_proc(command,  \
-                       env={'LD_LIBRARY_PATH' : self.bin_dir})
+        self.run_proc(command, env={'LD_LIBRARY_PATH' : self.bin_dir})
         #self.runCommand(command_args, f )
         f.close()
         #f = open(self.work_dir+"commands.txt", "w")
