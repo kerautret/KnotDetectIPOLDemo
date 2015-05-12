@@ -224,4 +224,4 @@ class app(base_app):
         #if comp is not None:
         #    command_to_save += comp
         #self.list_commands +=  command_to_save + '\n'
-        return command_to_save
+        #sreturn command_to_save
