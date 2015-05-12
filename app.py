@@ -126,9 +126,6 @@ class app(base_app):
             oldPath = self.work_dir + 'inputVol_0.vol'
             self.clone_input()
             shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
-        else:
-            self.clone_input()
-
         self.cfg.save()
         return self.tmpl_out('params.html')
 
