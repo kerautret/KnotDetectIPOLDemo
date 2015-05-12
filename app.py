@@ -144,7 +144,6 @@ class app(base_app):
 
 
     @cherrypy.expose
-
     def clone_input(self):
         """
         clone the input for a re-run of the algo
