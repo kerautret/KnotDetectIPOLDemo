@@ -178,15 +178,15 @@ class app(base_app):
         """
 
         # read the parameters
-        print self.cfg['param']
+        #print self.cfg['param']
 
-        shutil.copy(self.input_dir +self.cfg['meta']['basename']+".vol",
-                    self.work_dir + 'inputVol_0.vol')        
-        shutil.copy(self.input_dir +self.cfg['meta']['basename']+".sdp",
-                    self.work_dir + 'inputVol_0.sdp')        
+        #shutil.copy(self.input_dir +self.cfg['meta']['basename']+".vol",
+        #            self.work_dir + 'inputVol_0.vol')        
+        #shutil.copy(self.input_dir +self.cfg['meta']['basename']+".sdp",
+        #            self.work_dir + 'inputVol_0.sdp')        
                  
         # run the algorithm
-        self.commands = ""
+        #self.commands = ""
 
         try:
             self.run_algo({'minthreshold': 0,
