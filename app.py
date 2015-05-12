@@ -191,8 +191,12 @@ class app(base_app):
         f = open(self.work_dir+"output.txt", "w")
         command_args = ['singleKnotsDetection','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', 'resp.pgm', '--skipFirstSlice', "30"  ]
 
-        self.runCommand(command_args, f,  comp = " > output.txt" )
+        self.runCommand(command_args, f )
         f.close()
+        #f = open(self.work_dir+"commands.txt", "w")
+        #f.write(self.list_commands)
+        #f.close()
+
         return
 
     @cherrypy.expose
@@ -207,7 +211,7 @@ class app(base_app):
 
 
 
-    def runCommand(self, command, stdOut=None, stdErr=None, comp=None):
+    def runCommand(self, command, stdOut=None, stdErr=None):
         """
         Run command and update the attribute list_commands
         """
@@ -217,7 +221,7 @@ class app(base_app):
         # transform convert.sh in it classic prog command (equivalent)
         # command_to_save = ' '.join(['"' + arg + '"' if ' ' in arg else arg
         #          for arg in command ])
-        if comp is not None:
-            command_to_save += comp
-        self.list_commands +=  command_to_save + '\n'
+        #if comp is not None:
+        #    command_to_save += comp
+        #self.list_commands +=  command_to_save + '\n'
         return command_to_save
