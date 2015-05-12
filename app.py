@@ -46,6 +46,29 @@ class app(base_app):
         # params() is modified from the template
         app_expose(base_app.params)
         # run() and result() must be defined here
+    
+
+
+    #
+    # PARAMETER HANDLING
+    #
+
+    @cherrypy.expose
+    @init_app
+    def params(self, newrun=False, msg=None, \
+               x0=None, y0=None, x1=None, y1=None):
+        """
+        configure the algo execution
+        """
+
+        if newrun:
+            self.clone_input()
+
+
+
+        return self.tmpl_out("params.html")
+
+
 
     def build(self):
         """
@@ -113,21 +136,7 @@ class app(base_app):
 
 
 
-    #---------------------------------------------------------------------------
-    # Parameter handling (an optional crop).
-    #---------------------------------------------------------------------------
-    @cherrypy.expose
-    @init_app
-    def params(self, newrun=False, msg=None):
-        """Parameter handling (optional crop)."""
-
-        shutil.copy(self.input_dir +baseName+".vol",
-                    self.work_dir + 'inputVol_0.vol')        
-        shutil.copy(self.input_dir +baseName+".sdp",
-                    self.work_dir + 'inputVol_0.sdp')        
-
-        self.cfg.save()
-        return self.tmpl_out('params.html')
+   
 
 
 
