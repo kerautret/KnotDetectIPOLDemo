@@ -116,6 +116,17 @@ class app(base_app):
     #---------------------------------------------------------------------------
     # Parameter handling (an optional crop).
     #---------------------------------------------------------------------------
+    @cherrypy.expose
+    @init_app
+    def params(self, newrun=False, msg=None):
+        """Parameter handling (optional crop)."""
+
+        # if a new experiment on the same image, clone data
+        oldPath = self.work_dir + 'inputVol_0.vol'
+        self.clone_input()
+        shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
+        self.cfg.save()
+        return self.tmpl_out('params.html')
 
 
 
