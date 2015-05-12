@@ -155,18 +155,18 @@ class app(base_app):
         self.new_key()
         self.init_cfg()
         # copy the input files
-        fnames = ['input_%i' % i + self.input_ext
+        fnames = ['inputVol_%i' % i + self.input_ext
                   for i in range(self.input_nb)]
-        fnames += ['input_%i.vol' % i
+        fnames += ['inputVol_%i.vol' % i
                    for i in range(self.input_nb)]
-        fnames += ['input_%i.orig.vol' %i
+        fnames += ['inputVol_%i.orig.vol' %i
                    for i in range(self.input_nb)]
 
-        fnames = ['input_%i' % i + self.input_ext
+        fnames = ['inputVol_%i' % i + self.input_ext
                   for i in range(self.input_nb)]
-        fnames += ['input_%i.sdp' % i
+        fnames += ['inputVol_%i.sdp' % i
                    for i in range(self.input_nb)]
-        fnames += ['input_%i.orig.sdp' %i
+        fnames += ['inputVol_%i.orig.sdp' %i
                    for i in range(self.input_nb)]
         for fname in fnames:
             shutil.copy(old_work_dir + fname,
