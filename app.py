@@ -97,7 +97,7 @@ class app(base_app):
 
 
 
-   def input_select_callback(self, fnames):
+    def input_select_callback(self, fnames):
         '''
         Implement the callback for the input select to
         process the non-standard input
