@@ -151,7 +151,7 @@ class app(base_app):
         self.list_commands = ""
 
         try:
-            self.run_algo(a, rmin, rmax)
+            self.run_algo(alpha_res, rmin, rmax)
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
