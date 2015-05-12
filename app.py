@@ -6,6 +6,7 @@ demo editor: Bertrand Kerautret
 from lib import base_app, build, http, image, config
 from lib.misc import app_expose, ctime
 from lib.base_app import init_app
+import fileinput
 import cherrypy
 from cherrypy import TimeoutError
 import os.path
@@ -137,46 +138,31 @@ class app(base_app):
                     self.work_dir + 'inputVol_0.vol')        
         shutil.copy(self.input_dir +baseName+".sdp",
                     self.work_dir + 'inputVol_0.sdp')        
-        shutil.copy(self.input_dir +baseName+".sdp",
-                    self.work_dir + 'titi.sdp')        
-        self.cfg['param']['namesrc'] = str(baseName) 
         self.cfg.save()
 
 
 
     @cherrypy.expose
     @init_app
-    def clone_input(self):
-        """
-        clone the input for a re-run of the algo
-        """
-        self.log("cloning input from %s" % self.key)
-        # get a new key
-        old_work_dir = self.work_dir
-        old_cfg_meta = self.cfg['meta']
-        self.new_key()
-        self.init_cfg()
-        # copy the input files
-        fnames = ['inputVol_%i' % i + self.input_ext
-                  for i in range(self.input_nb)]
-        fnames += ['inputVol_%i.vol' % i
-                   for i in range(self.input_nb)]
-        fnames += ['inputVol_%i.orig.vol' %i
-                   for i in range(self.input_nb)]
+    def params(self, newrun=False, msg=None):
+        """Parameter handling (optional crop)."""
 
-        fnames = ['inputVol_%i' % i + self.input_ext
-                  for i in range(self.input_nb)]
-        fnames += ['inputVol_%i.sdp' % i
-                   for i in range(self.input_nb)]
-        fnames += ['inputVol_%i.orig.sdp' %i
-                   for i in range(self.input_nb)]
-        for fname in fnames:
-            shutil.copy(old_work_dir + fname,
-                        self.work_dir + fname)
-        # copy cfg
-        self.cfg['meta'].update(old_cfg_meta)
+        # if a new experiment on the same image, clone data
+        if newrun:
+             oldPath = self.work_dir + 'inputVol_0.vol'
+             self.clone_input()
+             shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
+
+        # save the input image as 'input_0_selection.png', the one to be used
+        img = image(self.work_dir + 'input_0.png')
+        img.save(self.work_dir + 'input_0_selection.png')
+        img.save(self.work_dir + 'input_0_selection.pgm')
+
+
+        # initialize subimage parameters
+        self.cfg['param'] = {'x1':-1, 'y1':-1, 'x2':-1, 'y2':-1}
         self.cfg.save()
-        return
+        return self.tmpl_out('params.html')
 
    
 
@@ -211,15 +197,12 @@ class app(base_app):
 
         # read the parameters
         print self.cfg['param']
-        alpha_res = self.cfg['param']['a']
-        rmin = self.cfg['param']['rmin']
-        rmax = self.cfg['param']['rmax']
-               
+                 
         # run the algorithm
         self.list_commands = ""
 
         try:
-            self.run_algo(alpha_res, rmin, rmax)
+            self.run_algo()
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
@@ -250,13 +233,16 @@ class app(base_app):
 
 
 
-    def run_algo(self, a, rmin, rmax):
+    def run_algo(self, params):
         """
         the core algo runner
         could also be called by a batch processor
         this one needs no parameter
         """
-
+        alpha_res = self.cfg['param']['a']
+        rmin = self.cfg['param']['rmin']
+        rmax = self.cfg['param']['rmax']
+     
         f = open(self.work_dir+"output.txt", "w")
         command_args = ['apply.sh','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(a), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
 
