@@ -160,7 +160,7 @@ class app(base_app):
             self.cfg['param']['a'] = kwargs['a']
             self.cfg['param']['rmin'] = kwargs['rmin']
             self.cfg['param']['rmax'] = kwargs['rmax']
-
+            self.cfg.save()
         except ValueError:
             return self.error(errcode='badparams',
                               errmsg="The parameters must be numeric.")
