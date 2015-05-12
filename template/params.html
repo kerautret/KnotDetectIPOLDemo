@@ -9,8 +9,8 @@
 You can change different parameter of the knot detection algorithm:
 
 <font color="blue"> <i>Alpha Resolution</i> </font>, 
-<font color="blue"><i>Radius Min</i></font>,
-<font color="blue"><i>Radius Max</i></font>.
+<font color="blue"><i>rMin</i></font>,
+<font color="blue"><i>rMax</i></font>.
 
 
 
@@ -38,15 +38,15 @@ You can change different parameter of the knot detection algorithm:
 <li>
  <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minr">Min radius: <font color="blue"><i> minR </i></font>:</label>
+    <label for="rmin">Min radius: <font color="blue"><i> rMin </i></font>:</label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="minr" name="minr" value="40" />
+           size="4" id="rmin" name="rmin" value="40" />
   </div>
-  <div id="minr_slider" name="minr_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <div id="rmin_slider" name="rmin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#minr', '#minr_slider', 10, 150, 1);
+    createLinkedSlider('#rmin', '#rmin_slider', 10, 150, 1);
     });
   </script>
   <div style="clear:both"> </div>
@@ -57,15 +57,15 @@ You can change different parameter of the knot detection algorithm:
 <li>
  <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minr">Max radius: <font color="blue"><i> maxR </i></font>:</label>
+    <label for="rmax">Max radius: <font color="blue"><i> rMax </i></font>:</label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="maxr" name="maxr" value="40" />
+           size="4" id="rmax" name="rmax" value="40" />
   </div>
-  <div id="maxr_slider" name="max_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <div id="rmax_slider" name="rmax_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#maxr', '#maxr_slider', 10, 150, 1);
+    createLinkedSlider('#rmax', '#rmax_slider', 10, 150, 1);
     });
   </script>
   <div style="clear:both"> </div>
