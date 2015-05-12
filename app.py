@@ -143,6 +143,39 @@ class app(base_app):
         self.cfg.save()
 
 
+    @cherrypy.expose
+
+    def clone_input(self):
+        """
+        clone the input for a re-run of the algo
+        """
+        self.log("cloning input from %s" % self.key)
+        # get a new key
+        old_work_dir = self.work_dir
+        old_cfg_meta = self.cfg['meta']
+        self.new_key()
+        self.init_cfg()
+        # copy the input files
+        fnames = ['input_%i' % i + self.input_ext
+                  for i in range(self.input_nb)]
+        fnames += ['input_%i.vol' % i
+                   for i in range(self.input_nb)]
+        fnames += ['input_%i.orig.vol' %i
+                   for i in range(self.input_nb)]
+
+        fnames = ['input_%i' % i + self.input_ext
+                  for i in range(self.input_nb)]
+        fnames += ['input_%i.sdp' % i
+                   for i in range(self.input_nb)]
+        fnames += ['input_%i.orig.sdp' %i
+                   for i in range(self.input_nb)]
+        for fname in fnames:
+            shutil.copy(old_work_dir + fname,
+                        self.work_dir + fname)
+        # copy cfg
+        self.cfg['meta'].update(old_cfg_meta)
+        self.cfg.save()
+        return
 
    
 
