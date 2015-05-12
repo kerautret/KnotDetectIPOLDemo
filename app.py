@@ -72,8 +72,14 @@ class app(base_app):
             shutil.copy(oldPath, self.work_dir + 'inputVol_0.vol')
             shutil.copy(oldPathSDP, self.work_dir + 'inputVol_0.sdp')
         
-        return self.tmpl_out("params.html", msg=msg,
-                             input=['inputVol_0.vol', 'inputVol_0.sdp'])
+        img = image(self.work_dir + 'input_0.png')
+        img.save(self.work_dir + 'input_0_selection.png')
+        img.save(self.work_dir + 'input_0_selection.pgm')
+
+        # initialize subimage parameters
+        self.cfg['param'] = {'x1':-1, 'y1':-1, 'x2':-1, 'y2':-1}
+        self.cfg.save()
+        return self.tmpl_out('params.html')
 
 
 
