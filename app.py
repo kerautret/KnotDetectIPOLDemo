@@ -143,13 +143,15 @@ class app(base_app):
 
         # read the parameters
         print self.cfg['param']
-        typeprimitive = self.cfg['param']['typeprimitive']
-        b = self.cfg['param']['b']
+        alpha_res = self.cfg['param']['a']
+        rmin = self.cfg['param']['rmin']
+        rmax = self.cfg['param']['rmax']
+
         # run the algorithm
         self.list_commands = ""
 
         try:
-            self.run_algo(typeprimitive)
+            self.run_algo(a, rmin, rmax)
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
@@ -175,18 +177,21 @@ class app(base_app):
 
         return self.tmpl_out("run.html")
 
-    def run_algo(self, typeprimitive):
+
+
+
+
+
+    def run_algo(self, a, rmin, rmax):
         """
         the core algo runner
         could also be called by a batch processor
         this one needs no parameter
         """
         f = open(self.work_dir+"output.txt", "w")
-        command_args = ['dll_decomposition', '-v', '-d', typeprimitive ]
+        command_args = ['singleKnotsDetection','-i', 'input_0.vol', '-c', 'input_0.sdp', '-m', rmin,'-M', rmax,
+                        '--alphaImageHeight', a, '-s', 1, '-o', 'resp.pgm', '--skipFirstSlice', '30'  ]
 
-        if self.cfg['param']['b']:
-            command_args += ['-b']
-        command_args += ['input_0.png']
         self.runCommand(command_args, f, comp = " > output.txt" )
         f.close()
         f = open(self.work_dir+"commands.txt", "w")
