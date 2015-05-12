@@ -227,9 +227,9 @@ class app(base_app):
         could also be called by a batch processor
         this one needs no parameter
         """
-        alpha_res = self.cfg['param']['a']
-        rmin = self.cfg['param']['rmin']
-        rmax = self.cfg['param']['rmax']
+        alpha_res = 3#self.cfg['param']['a']
+        rmin = 80#self.cfg['param']['rmin']
+        rmax = 100#self.cfg['param']['rmax']
         
         f = open(self.work_dir+"output.txt", "w")
         command_args = ['apply.sh','-i', self.intowork_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resp.pgm', '--skipFirstSlice', "30"  ]
