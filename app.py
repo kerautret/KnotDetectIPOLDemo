@@ -120,15 +120,13 @@ class app(base_app):
         """
         params handling and run redirection
         """
-        if 'b' in kwargs:
-            x = True
-        else:
-            x = False
 
         # save and validate the parameters
         try:
-            self.cfg['param']['typeprimitive'] = kwargs['typeprimitive']
-            self.cfg['param']['b'] = x
+            self.cfg['param']['a'] = kwargs['a']
+            self.cfg['param']['rmin'] = kwargs['rmin']
+            self.cfg['param']['rmax'] = kwargs['rmax']
+
         except ValueError:
             return self.error(errcode='badparams',
                               errmsg="The parameters must be numeric.")
