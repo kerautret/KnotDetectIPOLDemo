@@ -16,12 +16,14 @@ interval (<font color="blue"><i>rMin</i></font>,
 <font color="blue"><i>rMax</i></font>) and the minimal z-motion to be
 considered (<font color="blue"> <i>zMin</i> </font>), default 10 to
 remove background noise.
+</p>
+
 
 <form action="${app.base_url + 'wait'}" method="get">
 
   <input type="hidden" name="key" value="${app.key}">
 <div class="action">
-</p>
+
 
 <ul>
 <li>
@@ -97,14 +99,14 @@ remove background noise.
 
 </ul>
 
-
+<p>
 You can also change the parameter of the knot detection algorithm: the
 threshold value to binarized the image
 (<font color="blue"> <i>tBin</i> </font>), and the maximum distance
 between two connected components
 (<font color="blue"> <i>dmax</i> </font>), set by default to 20
 according the mean awaided with of the knot.
-
+</p>
   
 
     <input type="submit" value="run" />
