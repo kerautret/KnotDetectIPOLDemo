@@ -6,12 +6,16 @@
 
 <p>
 
-You can change different parameters of the knot detection algorithm:
+You can first ajust different parameters associated to the image
+accumulation generation used in the knot detection algorithm:
 
-alpha resolution (<font color="blue"> <i>a</i> </font>) and the
+
+alpha resolution (<font color="blue"> <i>a</i> </font>), the
 minimal and maximal radius values of the analyse
 interval (<font color="blue"><i>rMin</i></font>,
-<font color="blue"><i>rMax</i></font>).
+<font color="blue"><i>rMax</i></font>) and the minimal z-motion to be
+considered (<font color="blue"> <i>zMin</i> </font>), default 10 to
+remove background noise.
 
 <form action="${app.base_url + 'wait'}" method="get">
 
@@ -54,7 +58,6 @@ interval (<font color="blue"><i>rMin</i></font>,
   </script>
   <div style="clear:both"> </div>
   <!-- end of code for slider -->
-
 </li>
 
 <li>
@@ -74,8 +77,33 @@ interval (<font color="blue"><i>rMin</i></font>,
   <div style="clear:both"> </div>
   <!-- end of code for slider -->
 </li>
+<li>
+  <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="zmin">min Z-motion : <font color="blue"><i>zMin</i></font></label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="zmin" name="zmin" value="10" />
+  </div>
+  <div id="zmin_slider" name="zmin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#zmin', '#zmin_slider', 0, 20, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+</li>
 
 </ul>
+
+
+You can also change the parameter of the knot detection algorithm: the
+threshold value to binarized the image
+(<font color="blue"> <i>tBin</i> </font>), and the maximum distance
+between two connected components
+(<font color="blue"> <i>dmax</i> </font>), set by default to 20
+according the mean awaided with of the knot.
 
   
 

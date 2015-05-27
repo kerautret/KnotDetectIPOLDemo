@@ -230,6 +230,12 @@ class app(base_app):
         alpha_res = self.cfg['param']['a']
         rmin = self.cfg['param']['rmin']
         rmax = self.cfg['param']['rmax']
+        zmin = self.cfg['param']['zmin']
+        
+        tbin = self.cfg['param']['tbin']        
+        dmax = self.cfg['param']['dmax']
+
+
         
         f = open(self.work_dir+"output.txt", "w")
         fInfo = open(self.work_dir+"info.txt", "w")
