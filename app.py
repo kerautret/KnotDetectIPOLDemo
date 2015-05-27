@@ -116,8 +116,7 @@ class app(base_app):
         Implement the callback for the input select to
         process the non-standard input
         '''         
-        extension3D = (fnames[0])[-6:-4]
-        self.cfg['meta']['is3d'] = extension3D == "3d"
+        self.cfg['meta']['is3d'] = True
         if self.cfg['meta']['is3d'] :
             baseName = (fnames[0])[0:-4]
             shutil.copy(self.input_dir +baseName+".vol",
