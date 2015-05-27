@@ -102,15 +102,63 @@ remove background noise.
 <p>
 You can also change the parameter of the knot detection algorithm: the
 threshold value to binarized the image
-(<font color="blue"> <i>tBin</i> </font>), and the maximum distance
+(<font color="red"> <i>tBin</i> </font>), and the maximum distance
 between two connected components
-(<font color="blue"> <i>dmax</i> </font>), set by default to 20
+(<font color="red"> <i>dmax</i> </font>), set by default to 20
 according the mean awaided with of the knot.
 </p>
   
+<ul>
+<li>
 
-    <input type="submit" value="run" />
+  <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="tbin">threshold binarisation  : <font color="blue"><i>tBin</i></font></label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="tbin" name="tbin" value="40" />
   </div>
+  <div id="tbin_slider" name="tbin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#tbin', '#tbin_slider', 0, 20, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+</li>
+
+
+<li>
+
+
+
+  <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="dmax">Maximal distance : <font color="blue"><i>dMax</i></font></label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="dmax" name="dmax" value="40" />
+  </div>
+  <div id="dmax_slider" name="dmax_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#dmax', '#dmax_slider', 0, 20, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+</li>
+
+
+
+
+</ul>
+
+
+
+<input type="submit" value="run" />
+</div>
 </form>
 
 <hr />
