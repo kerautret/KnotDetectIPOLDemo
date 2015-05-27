@@ -256,7 +256,7 @@ class app(base_app):
         """
         return self.tmpl_out("result.html",
                              height=image(self.work_dir
-                                          + 'input_0.png').size[1])
+                                          + 'resu.png').size[1])
 
 
 
