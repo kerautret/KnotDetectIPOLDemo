@@ -162,6 +162,11 @@ class app(base_app):
             self.cfg['param']['a'] = kwargs['a']
             self.cfg['param']['rmin'] = kwargs['rmin']
             self.cfg['param']['rmax'] = kwargs['rmax']
+            self.cfg['param']['zmin'] = kwargs['zmin']
+            self.cfg['param']['tbin'] = kwargs['tbin']
+            self.cfg['param']['dmax'] = kwargs['dmax']
+            self.cfg['param']['minsize'] = kwargs['minsize']
+
             self.cfg.save()
         except ValueError:
             return self.error(errcode='badparams',
@@ -234,7 +239,7 @@ class app(base_app):
         
         tbin = self.cfg['param']['tbin']        
         dmax = self.cfg['param']['dmax']
-
+        minsize = self.cfg['param']['minsize'] 
 
         
         f = open(self.work_dir+"output.txt", "w")
