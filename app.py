@@ -55,74 +55,74 @@ class app(base_app):
         """
         program build/update
         """
-        # store common file path in variables
-        tgz_file = self.dl_dir + self.demo_src_filename
-        prog_names = ["pgm2freeman", "displayContours", "extract3D"]
-        script_names = ["convert.sh", "convertFig.sh", "transformBG.sh"]
-        prog_bin_files = []
+    #     # store common file path in variables
+    #     tgz_file = self.dl_dir + self.demo_src_filename
+    #     prog_names = ["pgm2freeman", "displayContours", "extract3D"]
+    #     script_names = ["convert.sh", "convertFig.sh", "transformBG.sh"]
+    #     prog_bin_files = []
 
-        for a_prog in prog_names:
-            prog_bin_files.append(self.bin_dir+ a_prog)
+    #     for a_prog in prog_names:
+    #         prog_bin_files.append(self.bin_dir+ a_prog)
 
-        log_file = self.base_dir + "build.log"
-        # get the latest source archive
+    #     log_file = self.base_dir + "build.log"
+    #     # get the latest source archive
 
-        build.download(self.xlink_src, tgz_file)
+    #     build.download(self.xlink_src, tgz_file)
 
-        # test if the dest file is missing, or too old
-        if (os.path.isfile(prog_bin_files[0])
-            and ctime(tgz_file) < ctime(prog_bin_files[0])):
-            cherrypy.log("not rebuild needed",
-                         context='BUILD', traceback=False)
-        else:
-            # extract the archive
-            build.extract(tgz_file, self.src_dir)
-            # build the program
-            os.mkdir(self.src_dir+ self.demo_src_dir+ "/build")
-            build.run("cd %s; cmake .. -DBUILD_EXAMPLES=false \
-                       -DCMAKE_BUILD_TYPE=Release \
-                       -DDGTAL_BUILD_TESTING=false;\
-                       make -j 4"%(self.src_dir+ self.demo_src_dir + "/build")\
-                      , stdout=log_file)
+    #     # test if the dest file is missing, or too old
+    #     if (os.path.isfile(prog_bin_files[0])
+    #         and ctime(tgz_file) < ctime(prog_bin_files[0])):
+    #         cherrypy.log("not rebuild needed",
+    #                      context='BUILD', traceback=False)
+    #     else:
+    #         # extract the archive
+    #         build.extract(tgz_file, self.src_dir)
+    #         # build the program
+    #         os.mkdir(self.src_dir+ self.demo_src_dir+ "/build")
+    #         build.run("cd %s; cmake .. -DBUILD_EXAMPLES=false \
+    #                    -DCMAKE_BUILD_TYPE=Release \
+    #                    -DDGTAL_BUILD_TESTING=false;\
+    #                    make -j 4"%(self.src_dir+ self.demo_src_dir + "/build")\
+    #                   , stdout=log_file)
 
-            # save into bin dir
-            if os.path.isdir(self.bin_dir):
-                shutil.rmtree(self.bin_dir)
-            os.mkdir(self.bin_dir)
-            for i in range(0, len(prog_bin_files)):
-                shutil.copy(self.src_dir +
-                            os.path.join(self.demo_src_dir,
-                                         "build",
-                                         "demoIPOL_ExtrConnectedReg",
-                                         prog_names[i]),
-                            prog_bin_files[i])
-            for s_name in script_names:
-                shutil.copy(self.src_dir+
-                            os.path.join(self.demo_src_dir,
-                                         "demoIPOL_ExtrConnectedReg",
-                                         s_name), self.bin_dir)
-            # copy Dynamic lib
-            shutil.copy(self.src_dir +self.demo_src_dir+
-                        "/build/src/libDGtal.so", self.bin_dir)
-            shutil.copy(self.src_dir +self.demo_src_dir+
-                        "/build/src/libDGtalIO.so", self.bin_dir)
-            # cleanup the source dir
-            shutil.rmtree(self.src_dir)
-        return
+    #         # save into bin dir
+    #         if os.path.isdir(self.bin_dir):
+    #             shutil.rmtree(self.bin_dir)
+    #         os.mkdir(self.bin_dir)
+    #         for i in range(0, len(prog_bin_files)):
+    #             shutil.copy(self.src_dir +
+    #                         os.path.join(self.demo_src_dir,
+    #                                      "build",
+    #                                      "demoIPOL_ExtrConnectedReg",
+    #                                      prog_names[i]),
+    #                         prog_bin_files[i])
+    #         for s_name in script_names:
+    #             shutil.copy(self.src_dir+
+    #                         os.path.join(self.demo_src_dir,
+    #                                      "demoIPOL_ExtrConnectedReg",
+    #                                      s_name), self.bin_dir)
+    #         # copy Dynamic lib
+    #         shutil.copy(self.src_dir +self.demo_src_dir+
+    #                     "/build/src/libDGtal.so", self.bin_dir)
+    #         shutil.copy(self.src_dir +self.demo_src_dir+
+    #                     "/build/src/libDGtalIO.so", self.bin_dir)
+    #         # cleanup the source dir
+    #         shutil.rmtree(self.src_dir)
+    #     return
 
 
-    def input_select_callback(self, fnames):
-        '''
-        Implement the callback for the input select to
-        process the non-standard input
-        '''         
-        extension3D = (fnames[0])[-6:-4]
-        self.cfg['meta']['is3d'] = extension3D == "3d"
-        if self.cfg['meta']['is3d'] :
-            baseName = (fnames[0])[0:-4]
-            shutil.copy(self.input_dir +baseName+".vol",
-                        self.work_dir + 'inputVol_0.vol')        
-        self.cfg.save()
+    # def input_select_callback(self, fnames):
+    #     '''
+    #     Implement the callback for the input select to
+    #     process the non-standard input
+    #     '''         
+    #     extension3D = (fnames[0])[-6:-4]
+    #     self.cfg['meta']['is3d'] = extension3D == "3d"
+    #     if self.cfg['meta']['is3d'] :
+    #         baseName = (fnames[0])[0:-4]
+    #         shutil.copy(self.input_dir +baseName+".vol",
+    #                     self.work_dir + 'inputVol_0.vol')        
+    #     self.cfg.save()
 
 
     #---------------------------------------------------------------------------
