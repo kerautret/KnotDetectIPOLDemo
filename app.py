@@ -28,7 +28,7 @@ class app(base_app):
     input_max_pixels = 4096 * 4096 # max size (in pixels) of an input image
     input_max_weight = 1 * 4096 * 4096  # max size (in bytes) of an input file
     input_dtype = '3x8i' # input image expected data type
-    input_ext = '.png'   # input image expected extension (ie file format)
+    input_ext = '.vol'   # input image expected extension (ie file format)
     is_test = False      # switch to False for deployment
     commands = []
     def __init__(self):
