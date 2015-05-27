@@ -246,10 +246,16 @@ class app(base_app):
         fInfo = open(self.work_dir+"info.txt", "w")
         command_args = ['generatePolarZMoveImg','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resu.pgm', '--skipFirstSlice', "30"  ]
         command_args += ['-z', str(zmin)]
+        command_args += ['--minSize', str(minsize)]
+        command_args += ['-d', str(dmax)]
+        command_args += ['-b', str(tbin)]
+
 
         p = self.run_proc(command_args, stderr=fInfo, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
         pp = self.run_proc(['convert.sh', 'resu.pgm',  'resu.png'], stderr=fInfo, env={'LD_LIBRARY_PATH' : self.bin_dir})
+        self.wait_proc(pp, timeout=self.timeout)
+        pp = self.run_proc(['convert.sh', 'imgCC.ppm',  'resuCC.png'], stderr=fInfo, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(pp, timeout=self.timeout)
         fInfo.close()
         f.close()
