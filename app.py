@@ -1,6 +1,5 @@
 """"
-Demonstration of paper:  Extraction of Connected Region Boundary in
-                         Multidimensional Images
+Demonstration of paper:  Knot Detection from Accumulation Map by Polar Scan submitted to IWCIA
 demo editor: Bertrand Kerautret
 """
 
@@ -18,7 +17,7 @@ import time
 class app(base_app):
     """ template demo app """
 
-    title = "Extraction of Connected Region Boundary in Multidimensional Images"
+    title = "Knot Detection from Accumulation Map by Polar Scan: Online Demonstration"
     xlink_article = 'http://www.ipol.im/pub/art/2014/74/'
     xlink_src = 'http://www.ipol.im/pub/art/2014/74/'+\
                 'FrechetAndConnectedCompDemo.tgz'
