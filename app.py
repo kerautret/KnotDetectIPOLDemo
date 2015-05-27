@@ -194,7 +194,8 @@ class app(base_app):
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
-            return self.error(errcode='runtime')
+            return self.error(errcode='runtime',
+                              errmsg="Something went wrong with the program.")
         except ValueError:
             return self.error(errcode='badparams',
                               errmsg="The parameters given produce no contours,\
