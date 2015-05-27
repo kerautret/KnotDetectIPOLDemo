@@ -12,6 +12,45 @@
 
 
 
+
+
+<div class="gallery" style="height:${height}px">
+  <ul class="index">
+
+
+  <li>
+      <a href="${app.work_url + 'input_0.png'}">input
+	<span>
+	  <img height="${height}px" src="${app.work_url + 'input_0.png'}" alt="input" />
+	</span>
+      </a>
+    </li>
+  <li>
+      <a href="${app.work_url + 'resu.png}">input
+	<span>
+	  <img height="${height}px" src="${app.work_url + 'resu.png}" alt="input" />
+	</span>
+      </a>
+    </li>
+
+
+
+  </ul>
+</div>
+
+
+<h2>
+  <a class="toggle" href="#commands" onclick="toggle('commands');">
+    Additional Info
+  </a>
+</h2>
+<div id="commands" style="display:none">
+<p>The algorithm ran with the following commands:
+<pre class="stdio"> ${app.commands} </pre>
+</p>
+</div>
+
+
 <hr />
 
 
