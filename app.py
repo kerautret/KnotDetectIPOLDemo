@@ -189,8 +189,7 @@ class app(base_app):
         #self.commands = ""
 
         try:
-            self.run_algo({'minthreshold': 0,
-                           'maxthreshold': 10})
+            self.run_algo()
         except TimeoutError:
             return self.error(errcode='timeout')
         except RuntimeError:
