@@ -4,11 +4,14 @@
 </script>
 
 <p>
-%if ('is3d' not in app.cfg['meta']) or (not app.cfg['meta']['is3d']):
-  You can set the parameters to extract the image contours.
-%else:
-  You can set the parameters to extract the 3D connected region boundary.
-%endif
+You can change different parameters of the knot detection algorithm:
+
+alpha resolution (<font color="blue"> <i>a</i> </font>) and the
+minimal and maximal radius values of the analyse
+interval (<font color="blue"><i>rMin</i></font>,
+<font color="blue"><i>rMax</i></font>).
+
+
 
 </p>
 
