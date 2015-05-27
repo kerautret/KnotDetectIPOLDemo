@@ -102,10 +102,10 @@ remove background noise.
 <p>
 You can also change the parameter of the knot detection algorithm: the
 threshold value to binarized the image
-(<font color="red"> <i>tBin</i> </font>), and the maximum distance
-between two connected components
-(<font color="red"> <i>dmax</i> </font>), set by default to 20
-according the mean awaided with of the knot.
+(<font color="red"> <i>tBin</i> </font>), the maximum distance between
+two connected components (<font color="red"> <i>dmax</i> </font>), set
+by default to 20 according the mean awaided with of the knot and
+finally the min size to consider a set of pixel as a knot (<font color="red"> <i>minSize</i> </font>).
 </p>
   
 <ul>
@@ -137,13 +137,35 @@ according the mean awaided with of the knot.
   <div style="float:left;padding-right:25px">
     <label for="dmax">Maximal distance : <font color="red"><i>dMax</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="dmax" name="dmax" value="40" />
+           size="4" id="dmax" name="dmax" value="30" />
   </div>
   <div id="dmax_slider" name="dmax_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#dmax', '#dmax_slider', 0, 20, 1);
+    createLinkedSlider('#dmax', '#dmax_slider', 5, 100, 1);
+    });
+  </script>
+  <div style="clear:both"> </div>
+  <!-- end of code for slider -->
+</li>
+
+
+<li>
+
+
+
+  <!-- code for slider -->
+  <div style="float:left;padding-right:25px">
+    <label for="minsize">Maximal distance : <font color="red"><i>minSize</i></font></label>
+    <input type="text" style="font-family:monospace;text-align:right"
+           size="4" id="minsize" name="minsize" value="50" />
+  </div>
+  <div id="minsize_slider" name="minsize_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
+  <script type="text/javascript">
+    // Turn DIV slider into a slider linked to scale
+    $(document).ready(function() {
+    createLinkedSlider('#minsize', '#minsize_slider', 10, 100, 1);
     });
   </script>
   <div style="clear:both"> </div>
