@@ -237,9 +237,7 @@ class app(base_app):
 
         p = self.run_proc(command_args, stderr=fInfo, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
-        p = self.run_proc(['convertFig.sh', 'resu.pgm', \
-                               'resu.png'], stderr=fInfo, \
-                              env={'LD_LIBRARY_PATH' : self.bin_dir})
+        p = self.run_proc(['convert.sh', 'resu.pgm',  'resu.png'], stderr=fInfo, env={'LD_LIBRARY_PATH' : self.bin_dir})
         self.wait_proc(p, timeout=self.timeout)
         fInfo.close()
         f.close()
