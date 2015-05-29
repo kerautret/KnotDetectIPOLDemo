@@ -79,13 +79,13 @@ the minimal Z-Motion value considered (<font color="blue" <i>zMin</i></font>, se
   <div style="float:left;padding-right:25px">
     <label for="zmin">Minimum Z-Motion value : <font color="blue"><i>zMin</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="zmin" name="zmin" value="10" />
+           size="4" id="zmin" name="zmin" value="100" />
   </div>
   <div id="zmin_slider" name="zmin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#zmin', '#zmin_slider', 0, 20, 1);
+    createLinkedSlider('#zmin', '#zmin_slider', 0, 200, 1);
     });
   </script>
   <div style="clear:both"> </div>
