@@ -244,8 +244,8 @@ class app(base_app):
         
         f = open(self.work_dir+"output.txt", "w")
         fInfo = open(self.work_dir+"info.txt", "w")
-        command_args = ['generatePolarZMoveImg','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resu.pgm', '--skipFirstSlice', "30"  ]
-        command_args += ['--skipLastSlice', "30"]
+        command_args = ['generatePolarZMoveImg','-i', self.work_dir + "inputVol_0.vol", '-c', self.work_dir + "inputVol_0.sdp", '-m', str(rmin),'-M', str(rmax), '--alphaImageHeight', str(alpha_res), '-s', "1", '-o', self.work_dir +'resu.pgm', '--skipFirstSlice', "20"  ]
+        command_args += ['--skipLastSlice', "20"]
         command_args += ['-z', str(zmin)]
         command_args += ['--minSize', str(minsize)]
         command_args += ['--dMax', str(dmax)]
