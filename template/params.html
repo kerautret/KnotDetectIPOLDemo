@@ -6,16 +6,11 @@
 
 <p>
 
-You can first ajust different parameters associated to the image
-accumulation generation used in the knot detection algorithm:
+You can first ajust the parameters used to generate the accumulation map:
 
-
-alpha resolution (<font color="blue"> <i>a</i> </font>), the
-minimal and maximal radius values of the analyse
-interval (<font color="blue"><i>rMin</i></font>,
-<font color="blue"><i>rMax</i></font>) and the minimal z-motion to be
-considered (<font color="blue"> <i>zMin</i> </font>), default 10 to
-remove background noise.
+the angular resolution (<font color="blue"><i>nbAngularSectors</i></font>),
+the maximal analysis radius from the pith (<font color="blue"><i>rMax</i></font>) and
+the minimal Z-Motion value considered (<font color="blue" <i>zMin</i></font>, set to 10 by default remove the background noise).
 </p>
 
 
@@ -29,7 +24,7 @@ remove background noise.
 <li>
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="a">Alpha resolution: <font color="blue"><i>a</i></font></label>
+    <label for="a">Angular resolution: <font color="blue"><i>nbAngularSectors</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="a" name="a" value="500" />
   </div>
@@ -44,18 +39,18 @@ remove background noise.
   <!-- end of code for slider -->
 </li>
 
-<li>
+<li style="display: none;">
  <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="rmin">Min radius: <font color="blue"><i> rMin </i></font></label>
+    <label for="rmin">Minimum radius: <font color="blue"><i> rMin </i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="rmin" name="rmin" value="40" />
+           size="4" id="rmin" name="rmin" value="0" />
   </div>
   <div id="rmin_slider" name="rmin_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#rmin', '#rmin_slider', 10, 150, 1);
+    createLinkedSlider('#rmin', '#rmin_slider', 0, 150, 1);
     });
   </script>
   <div style="clear:both"> </div>
@@ -65,9 +60,9 @@ remove background noise.
 <li>
  <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="rmax">Max radius: <font color="blue"><i> rMax </i></font></label>
+    <label for="rmax">Maximum anlysis radius: <font color="blue"><i> rMax </i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="rmax" name="rmax" value="60" />
+           size="4" id="rmax" name="rmax" value="80" />
   </div>
   <div id="rmax_slider" name="rmax_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
@@ -82,7 +77,7 @@ remove background noise.
 <li>
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="zmin">min Z-motion : <font color="blue"><i>zMin</i></font></label>
+    <label for="zmin">Minimum Z-Motion value : <font color="blue"><i>zMin</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="zmin" name="zmin" value="10" />
   </div>
@@ -100,20 +95,18 @@ remove background noise.
 </ul>
 
 <p>
-You can also change the parameter of the knot detection algorithm: the
-threshold value to binarized the image
-(<font color="red"> <i>tBin</i> </font>), the maximum distance between
-two connected components (<font color="red"> <i>dmax</i> </font>), set
-by default to 20 according the mean awaided with of the knot and
-finally the min size to consider a set of pixel as a knot (<font color="red"> <i>minSize</i> </font>).
+You can also change the parameters used to detect th supporting areas of knots:
+
+the threshold value to binarized the accumulation map (<font color="red"><i>tBin</i></font>) and
+the maximum distance between two connected components (<font color="red"><i>dMax</i></font>, set to 20 by default according the mean width od knots).
+<!-- and the minimum size of a supporting area to be considered as belonging to a knot (<font color="red"><i>minSize</i></font>). -->
 </p>
   
 <ul>
 <li>
-
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="tbin">threshold binarisation  : <font color="red"><i>tBin</i></font></label>
+    <label for="tbin">Binarization threshold: <font color="red"><i>tBin</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="tbin" name="tbin" value="40" />
   </div>
@@ -128,16 +121,12 @@ finally the min size to consider a set of pixel as a knot (<font color="red"> <i
   <!-- end of code for slider -->
 </li>
 
-
 <li>
-
-
-
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
     <label for="dmax">Maximal distance : <font color="red"><i>dMax</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
-           size="4" id="dmax" name="dmax" value="30" />
+           size="4" id="dmax" name="dmax" value="20" />
   </div>
   <div id="dmax_slider" name="dmax_slider" style="width:280px;float:left;margin-top:4px;font-size:10pt"></div>
   <script type="text/javascript">
@@ -150,14 +139,10 @@ finally the min size to consider a set of pixel as a knot (<font color="red"> <i
   <!-- end of code for slider -->
 </li>
 
-
-<li>
-
-
-
+<li style="display: none;">
   <!-- code for slider -->
   <div style="float:left;padding-right:25px">
-    <label for="minsize">Maximal distance : <font color="red"><i>minSize</i></font></label>
+    <label for="minsize">Minimum component size: <font color="red"><i>minSize</i></font></label>
     <input type="text" style="font-family:monospace;text-align:right"
            size="4" id="minsize" name="minsize" value="50" />
   </div>
@@ -165,16 +150,12 @@ finally the min size to consider a set of pixel as a knot (<font color="red"> <i
   <script type="text/javascript">
     // Turn DIV slider into a slider linked to scale
     $(document).ready(function() {
-    createLinkedSlider('#minsize', '#minsize_slider', 10, 100, 1);
+    createLinkedSlider('#minsize', '#minsize_slider', 0, 100, 1);
     });
   </script>
   <div style="clear:both"> </div>
   <!-- end of code for slider -->
 </li>
-
-
-
-
 </ul>
 
 
